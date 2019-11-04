@@ -1,0 +1,63 @@
+group 'Automation'
+apply plugin: 'application'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'groovy'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+compileTestJava {
+    options.compilerArgs += '-proc:none'
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'io.appium', name: 'java-client', version: '5.0.4'
+    compile group: 'io.cucumber', name: 'cucumber-java', version: '4.0.1'
+    testCompile group: 'io.cucumber', name: 'cucumber-junit', version: '4.0.1'
+    compile 'log4j:log4j:1.2.17'
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    compile 'org.slf4j:slf4j-log4j12:1.7.5'
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.8'
+    compile group: 'org.im4java', name: 'im4java', version: '1.4.0'
+    compile 'com.github.cosysoft:device-api:0.9.3'
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.8'
+    compile group: 'com.aventstack', name: 'extentreports-cucumber4-adapter', version: '1.0.6'
+    compile group: 'com.sun.jersey', name: 'jersey-client', version: '1.19.4'
+    compile group: 'org.json', name: 'json', version: '20180813'
+}
+
+
+test {
+    systemProperty "env", findProperty("env")
+    systemProperty "browser", findProperty("browser")
+    systemProperty "platform", findProperty("platform")
+    systemProperty "tulna.platform", findProperty("tulna.platform")
+    systemProperty "tulna.mode", findProperty("tulna.mode")
+    systemProperty "tags", findProperty("tags")
+
+    if (systemProperties.get('platform') == "web")
+        systemProperty "cucumber.options", "--tags @web --tags @qa --tags " + systemProperties.get("tags")
+    else if (systemProperties.get('platform') == "mweb")
+        systemProperty "cucumber.options", "--tags @mweb --tags @qa --tags " + systemProperties.get("tags")
+    else {
+        if (systemProperties.get('platform') == "android") {
+            systemProperty "cucumber.options", "--tags @android --tags " + systemProperties.get("tags")
+        } else if (systemProperties.get('platform') == "ios") {
+            systemProperty "cucumber.options", "--tags @ios --tags " + systemProperties.get("tags")
+        } else {
+            println('Did not receive correct platform')
+        }
+    }
+}
+

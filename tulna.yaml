@@ -1,0 +1,9 @@
+web:
+  home/landingpage: {
+    date: [1572, 720, 2262, 804],
+  }
+
+
+fuzzPercentage: 5.00
+fullScreen: true
+zoomFactor: 1.0

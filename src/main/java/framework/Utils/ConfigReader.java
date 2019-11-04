@@ -20,7 +20,7 @@ public final class ConfigReader {
     }
 
     private Map<String, String> readFile() throws FileNotFoundException {
-        return  (Map<String, String>) new Yaml().load(new FileInputStream(new File(getPath())));
+        return (Map<String, String>) new Yaml().load(new FileInputStream(new File(getPath())));
     }
 
     private String getPropertyValue(String propName, String defaultValue) {
@@ -33,8 +33,7 @@ public final class ConfigReader {
         return prop;
     }
 
-    public ConfigReader(){
+    public ConfigReader() {
         desktopOs = getPropertyValue("desktopOs", DESKTOP_OS_LINUX);
     }
-
 }

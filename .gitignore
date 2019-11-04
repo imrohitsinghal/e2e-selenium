@@ -1,0 +1,20 @@
+### Java ###
+*.class
+
+### Gradle ###
+.gradle
+/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+*.DS_Store
+*.idea/
+*actual_images/
+*Gif/
+*.log
+*Screenshots
+*/cucumber/report.js
+*runReport
+*target
+*out/
