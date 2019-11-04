@@ -12,8 +12,7 @@ A generic framework based on POM (Page Object Model) which takes care of Mweb, W
 
 # External dependencies
 1. imagemagick
-   - Mac OS: available in HomeBrew
-   - Linux: available in default apt repository
+   * [Download](https://imagemagick.org/script/download.php)
 
 # How this framework works:
 This framework is built in BDD style using cucumber framework and scenarios will be run using cucumber-junit runners.<br/>
@@ -42,37 +41,37 @@ Scenario tagging: <br/>
 
 * Running tag based features <br/>
 
-  `gradle clean test -Pplatform=web -Pbrowser=chrome -Penv=prod -Ptulna.mode=<build/compare> -Ptulna.platform=web -Ptags="@tag1,@tag2"` <br/>
+  `gradle clean test -Pplatform=web -Pbrowser=chrome -Penv=qa -Ptulna.mode=<build/compare> -Ptulna.platform=web -Ptags="@tag1,@tag2"` <br/>
 
 
-* Execution with visual mode <br/>
-
-    * FOR PROD (web):
-    
-        `gradle clean test -Pplatform=web -Pbrowser=chrome -Penv=prod -Ptulna.mode=<build/compare> -Ptulna.platform=web` <br/>
+* Execution on different platforms <br/>
         
-    * FOR QA (web):
+    * FOR Web:
     
-        `gradle clean test -Pplatform=web -Pbrowser=chrome -Penv=qa -Ptulna.mode=<build/compare> - -Ptulna.platform=web_qa` <br/>
+        `gradle clean test -Pplatform=web -Pbrowser=chrome -Penv=qa -Ptulna.mode=<build/compare> -Ptulna.platform=web -Ptags="@tag1,@tag2"` <br/>
      
     * FOR MWeb:
     
-        `gradle clean test -Pplatform=mweb -Pbrowser=chrome -Penv=qa -Ptulna.mode=<build/compare> - -Ptulna.platform=mweb_qa` <br/>
+        `gradle clean test -Pplatform=mweb -Pbrowser=chrome -Penv=qa -Ptulna.mode=<build/compare> -Ptulna.platform=mweb -Ptags="@tag1,@tag2"` <br/>
                     
-    * FOR ANDROID:
+    * FOR Android:
     
-        `gradle clean test -Pplatform=android -Ptulna.mode=build -Ptulna.platform=android` <br/>
+        `gradle clean test -Pplatform=android -Ptulna.mode=build -Ptulna.platform=android -Ptulna.platform=mweb -Ptags="@tag1,@tag2"` <br/>
+        
+    * FOR iOS:
+        
+         `gradle clean test -Pplatform=iOS -Ptulna.mode=build -Ptulna.platform=iOS -Ptulna.platform=mweb -Ptags="@tag1,@tag2"` <br/>
      
 # Reports and Results:
 
-* Test Report Location - `/runReport/cucumber/index.html`
+* Test Report Location - `/cucumber-report/index.html`
 
 * Execution with visual mode as 'build': <br/>
     
-    - All the baslines are stored in `Baselines` directory ( PROD-`/web/baselines`, QA-`/web_qa/baselines`)
+    - All the baselines are stored in `Baselines` directory (`/web/baseline_images`)
     
 * Execution with visual mode as 'compare' : <br/>
-    -  In case a test fails, actual and difference images are generated in `Baselines` directory under sub-directory 'actual_images' (PROD-`/web/actual_images`, QA-`web_qa/actual_images`)
+    -  In case a test fails, actual and difference images are generated in `Baselines` directory under sub-directory 'actual_images' (`/web/actual_images`)
     
 # Masking:
 
@@ -81,18 +80,15 @@ Scenario tagging: <br/>
   - Add the co-ordinates for the image which you want to mask in `tulna.yaml` <br/>
     (Ex. `homepage: {from_date: [x1, x2, y1, y2]}`) 
   - Add locators for elements which needs masking in `tulna.yaml` <br/>
-    (Ex. `homepage: ["css:div.highlight__decoration[style^=\"top\"]", 30]`) 
+    (Ex. `homepage: ["css:div.highlight__decoration[style^=\"top\"]"]`) 
   - Tool you can use to find co-ordinates - [GIMP](https://www.gimp.org/)
     
     
 #### Note: Want to run it in non-headless mode??
 
     - Comment `options.addArguments("headless");` in DriverManager class.
-    
-    
-#### What's next?
- 
- - Controlling headless mode from commandline
- - Running tests on Grid using Docker
- - Adding visual testing support for MWeb
- - Running tag based features from command-line
+
+### Contributing
+
+Fork the project, make a change, and send a pull request! 
+Danke! 
