@@ -41,7 +41,7 @@ Scenario tagging: <br/>
 
 * Running tag based features <br/>
 
-  `gradle clean test -Pplatform=web -Pbrowser=chrome -Penv=qa -Ptulna.mode=<build/compare> -Ptulna.platform=web -Ptags="@tag1,@tag2"` <br/>
+  `gradle clean test -Pplatform=web -Pbrowser=chrome -Penv=qa -Ptulna.mode=compare -Ptulna.platform=web -Ptags="@home"` <br/>
 
 
 * Execution on different platforms <br/>
